@@ -4,24 +4,18 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen bg-cream flex items-center overflow-hidden">
 
-      {/* Checkerboard panel — right half */}
+      {/* Subtle grid texture — full background */}
       <div
-        className="absolute top-0 right-0 w-1/2 h-full hidden md:block"
+        className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(45deg, #E8B84B 25%, transparent 25%),
-            linear-gradient(-45deg, #E8B84B 25%, transparent 25%),
-            linear-gradient(45deg, transparent 75%, #E8B84B 75%),
-            linear-gradient(-45deg, transparent 75%, #E8B84B 75%)
+            linear-gradient(to right, #C4622D 1px, transparent 1px),
+            linear-gradient(to bottom, #C4622D 1px, transparent 1px)
           `,
           backgroundSize: '48px 48px',
-          backgroundPosition: '0 0, 0 24px, 24px -24px, -24px 0px',
-          backgroundColor: '#FAF7F2',
+          opacity: 0.07,
         }}
       />
-
-      {/* Vertical divider line */}
-      <div className="absolute top-0 left-1/2 w-0.5 h-full bg-charcoal/10 hidden md:block" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-24 w-full">

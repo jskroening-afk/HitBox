@@ -52,25 +52,34 @@ function TilePattern({ id }: { id: string }) {
           id={id}
           x="0"
           y="0"
-          width="60"
-          height="60"
+          width="40"
+          height="40"
           patternUnits="userSpaceOnUse"
         >
-          {/* Outer quarter-circle arcs at each corner — ceramic tile motif */}
-          <path d="M 30 0 A 30 30 0 0 0 0 30"  fill="none" stroke="#FAF7F2" strokeWidth="1" />
-          <path d="M 30 0 A 30 30 0 0 1 60 30" fill="none" stroke="#FAF7F2" strokeWidth="1" />
-          <path d="M 0 30 A 30 30 0 0 1 30 60" fill="none" stroke="#FAF7F2" strokeWidth="1" />
-          <path d="M 60 30 A 30 30 0 0 0 30 60" fill="none" stroke="#FAF7F2" strokeWidth="1" />
-          {/* Inner secondary arcs in soft blue-grey for depth */}
-          <path d="M 20 0 A 20 20 0 0 0 0 20"  fill="none" stroke="#8FA3B1" strokeWidth="0.5" />
-          <path d="M 40 0 A 20 20 0 0 1 60 20" fill="none" stroke="#8FA3B1" strokeWidth="0.5" />
-          <path d="M 0 40 A 20 20 0 0 1 20 60" fill="none" stroke="#8FA3B1" strokeWidth="0.5" />
-          <path d="M 60 40 A 20 20 0 0 0 40 60" fill="none" stroke="#8FA3B1" strokeWidth="0.5" />
-          {/* Centre dot */}
-          <circle cx="30" cy="30" r="2.5" fill="none" stroke="#FAF7F2" strokeWidth="0.75" />
+          {/* Outer diamond */}
+          <path d="M 20 2 L 38 20 L 20 38 L 2 20 Z" fill="none" stroke="#FAF7F2" strokeWidth="0.75" />
+          {/* Inner diamond */}
+          <path d="M 20 11 L 29 20 L 20 29 L 11 20 Z" fill="none" stroke="#FAF7F2" strokeWidth="0.5" />
+          {/* Centre cross/plus */}
+          <line x1="20" y1="16" x2="20" y2="24" stroke="#FAF7F2" strokeWidth="0.75" />
+          <line x1="16" y1="20" x2="24" y2="20" stroke="#FAF7F2" strokeWidth="0.75" />
+          {/* Corner plus marks — arms face inward; adjacent tiles complete the cross */}
+          <line x1="0" y1="0" x2="3" y2="0" stroke="#FAF7F2" strokeWidth="0.75" />
+          <line x1="0" y1="0" x2="0" y2="3" stroke="#FAF7F2" strokeWidth="0.75" />
+          <line x1="40" y1="0" x2="37" y2="0" stroke="#FAF7F2" strokeWidth="0.75" />
+          <line x1="40" y1="0" x2="40" y2="3" stroke="#FAF7F2" strokeWidth="0.75" />
+          <line x1="0" y1="40" x2="3" y2="40" stroke="#FAF7F2" strokeWidth="0.75" />
+          <line x1="0" y1="40" x2="0" y2="37" stroke="#FAF7F2" strokeWidth="0.75" />
+          <line x1="40" y1="40" x2="37" y2="40" stroke="#FAF7F2" strokeWidth="0.75" />
+          <line x1="40" y1="40" x2="40" y2="37" stroke="#FAF7F2" strokeWidth="0.75" />
+          {/* Zigzag chevron ticks at each diamond corner */}
+          <path d="M 7 13 L 10 10 L 13 13" fill="none" stroke="#FAF7F2" strokeWidth="0.5" />
+          <path d="M 27 13 L 30 10 L 33 13" fill="none" stroke="#FAF7F2" strokeWidth="0.5" />
+          <path d="M 7 27 L 10 30 L 13 27" fill="none" stroke="#FAF7F2" strokeWidth="0.5" />
+          <path d="M 27 27 L 30 30 L 33 27" fill="none" stroke="#FAF7F2" strokeWidth="0.5" />
         </pattern>
       </defs>
-      <rect width="100%" height="100%" fill={`url(#${id})`} opacity="0.08" />
+      <rect width="100%" height="100%" fill={`url(#${id})`} opacity="0.15" />
     </svg>
   );
 }
@@ -78,7 +87,7 @@ function TilePattern({ id }: { id: string }) {
 function Block({ eyebrow, headline, body, cta, bgColor, reversed, patternId }: FeatureBlock) {
   const ImagePane = (
     <div
-      className="relative overflow-hidden h-72 lg:h-auto"
+      className="relative overflow-hidden h-72 lg:h-full"
       style={{ backgroundColor: bgColor }}
     >
       <TilePattern id={patternId} />
@@ -141,7 +150,7 @@ function Block({ eyebrow, headline, body, cta, bgColor, reversed, patternId }: F
     <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[540px]">
       {reversed ? (
         <>
-          <div className="lg:order-2">{ImagePane}</div>
+          <div className="lg:order-2 lg:h-full">{ImagePane}</div>
           <div className="lg:order-1">{TextPane}</div>
         </>
       ) : (
